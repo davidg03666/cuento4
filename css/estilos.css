@@ -1,10 +1,21 @@
+/* Centrar todo el contenido del body (incluye los botones) */
+body {
+  text-align: center;
+}
+
 /* Contenedor del flipbook */
 #flipbook {
   width: 800px;       /* ancho para escritorio */
   height: 500px;      /* alto fijo */
-  margin: 40px auto;  /* centrado */
-  transform-origin: center center;
+  /* centrado */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 40px 0;               /* espacio arriba y abajo */
+
+  /* animación suave al escalar */
   transition: transform 0.3s ease;
+  transform-origin: top center; /* escala desde el centro superior */
 }
 
 /* Cada página ocupa la mitad del contenedor */
@@ -27,11 +38,22 @@
 /* Botones de narración */
 #startNarration,
 #pauseNarration {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
+   display: inline-block;       /* para respetar text-align */
+  margin: 20px auto;           /* espacio arriba/abajo y centrados */
+  padding: 15px 30px;          /* más grandes que antes */
+  font-size: 1.2rem;           /* texto más grande */
+  border: none;                /* opcional: quita bordes nativos */
+  border-radius: 8px;          /* bordes redondeados */
+  background-color: #007bff;   /* color de fondo (puedes ajustar) */
+  color: #fff;                 /* texto blanco */
   cursor: pointer;
+  transition: transform 0.2s;
+}
+
+/* Efecto hover */
+#startNarration:hover,
+#pauseNarration:hover {
+  transform: scale(1.05);
 }
 
 /* Responsive para tablets y móviles */
