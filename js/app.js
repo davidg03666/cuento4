@@ -14,15 +14,20 @@ $(function() {
 
   // 2) Redimensiona el flipbook según el ancho de su contenedor padre
   function resizeFlipbook() {
-    // toma el ancho del padre (puede ser el body o un div contenedor)
-    const parentW = $book.parent().width();
-    // opcional: límite máximo de ancho
-    const maxW    = 800;
-    const w       = Math.min(parentW * 0.95, maxW);
-    const h       = Math.round(w * 1.5); // ratio 2:3
-    $book.css({ width: w + 'px', height: h + 'px' })
-         .turn('size', w, h);
-  }
+  const parentW   = $book.parent().width() * 0.95;      // 95% del contenedor
+  const viewportH = window.innerHeight * 0.9;           // 90% del alto ventana
+  const maxW      = 800;                                // tope escritorio
+
+  // Ancho máximo permitido para que alto = ancho*1.5 quepa en viewportH
+  const widthByHeight = viewportH / 1.5;
+
+  // Escogemos el menor: respetamos ancho de contenedor, tope, y lo que permita altura
+  const w = Math.min(parentW, maxW, widthByHeight);
+  const h = Math.round(w * 1.5);
+
+  $book.css({ width: w + 'px', height: h + 'px' })
+       .turn('size', w, h);
+}
 
   // 3) Inicializa Turn.js + Zoom
   function initFlipbook() {
@@ -74,6 +79,7 @@ $(function() {
     });
     $('#pauseNarration').on('click', () => narrador.pause());
   }
+
 
   // 5) Arranque
   buildAudioList();
