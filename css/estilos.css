@@ -5,17 +5,13 @@ body {
 
 /* Contenedor del flipbook */
 #flipbook {
-  width: 800px;       /* ancho para escritorio */
-  height: 500px;      /* alto fijo */
-  /* centrado */
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  margin: 40px 0;               /* espacio arriba y abajo */
-
-  /* animación suave al escalar */
-  transition: transform 0.3s ease;
-  transform-origin: top center; /* escala desde el centro superior */
+  margin: 10px 0;        /* espacio arriba y abajo */
+  max-width: 800px;      /* como antes */
+  max-height: 90vh;      /* nunca más alto del 90% del alto de ventana */
+  /* eliminamos width/height fijos para que JS los calcule */
 }
 
 /* Cada página ocupa la mitad del contenedor */
@@ -39,9 +35,9 @@ body {
 #startNarration,
 #pauseNarration {
    display: inline-block;       /* para respetar text-align */
-  margin: 20px auto;           /* espacio arriba/abajo y centrados */
-  padding: 15px 30px;          /* más grandes que antes */
-  font-size: 1.2rem;           /* texto más grande */
+  margin: 5px auto;           /* espacio arriba/abajo y centrados */
+  padding: 5px 20px;          /* más grandes que antes */
+  font-size: 0.6 rem;           /* texto más grande */
   border: none;                /* opcional: quita bordes nativos */
   border-radius: 8px;          /* bordes redondeados */
   background-color: #007bff;   /* color de fondo (puedes ajustar) */
@@ -56,23 +52,14 @@ body {
   transform: scale(1.05);
 }
 
-/* Responsive para tablets y móviles */
+/* En móviles mantienes el centrado y escalas */
 @media (max-width: 768px) {
   #flipbook {
-    width: 100%;
-    height: auto;            /* que la altura se ajuste al contenido */
-    transform: scale(0.8);    /* escala un poco todo el flipbook */
-    transform-origin: top center;
-  }
-  /* Cada página sigue ocupando la mitad del contenedor escalado */
-  #flipbook .page {
-    width: 50%;
+    transform: translateX(-50%) scale(0.8);
   }
 }
-
-/* Ajuste extra para pantallas muy pequeñas */
 @media (max-width: 480px) {
   #flipbook {
-    transform: scale(0.6);
+    transform: translateX(-50%) scale(0.6);
   }
 }
