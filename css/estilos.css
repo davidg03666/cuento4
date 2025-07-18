@@ -34,10 +34,10 @@ body {
 /* Botones de narración */
 #startNarration,
 #pauseNarration {
-   display: inline-block;       /* para respetar text-align */
+  display: inline-block;       /* para respetar text-align */
   margin: 5px auto;           /* espacio arriba/abajo y centrados */
   padding: 5px 20px;          /* más grandes que antes */
-  font-size: 0.6 rem;           /* texto más grande */
+  font-size: 1.5rem;           /* texto más grande */
   border: none;                /* opcional: quita bordes nativos */
   border-radius: 8px;          /* bordes redondeados */
   background-color: #007bff;   /* color de fondo (puedes ajustar) */
@@ -52,14 +52,17 @@ body {
   transform: scale(1.05);
 }
 
-/* En móviles mantienes el centrado y escalas */
-@media (max-width: 768px) {
-  #flipbook {
-    transform: translateX(-50%) scale(0.8);
-  }
-}
-@media (max-width: 480px) {
-  #flipbook {
-    transform: translateX(-50%) scale(0.6);
+
+
+/* Tablet y escritorio */
+
+
+
+/* Escritorio grande */
+@media (min-width: 1024px) {
+  #startNarration,
+  #pauseNarration {
+    padding: 15px 30px;  /* aún más cómodos en desktop */
+    font-size: 1.4rem;
   }
 }
